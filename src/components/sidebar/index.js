@@ -7,6 +7,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import React from 'react';
+import {useStateValue} from '../../StateProvider';
 
 const SidebarRow = ({src, Icon, title, className = ''}) => {
   return (
@@ -20,12 +21,13 @@ const SidebarRow = ({src, Icon, title, className = ''}) => {
 }
 
 const Sidebar = () => {
+  const [state] = useStateValue();
 
   return (
     <div className="sidebar">
       <SidebarRow
-        src="https://scontent.fnbo1-1.fna.fbcdn.net/v/t1.0-1/cp0/p40x40/64861711_474700469740434_5903317443228467200_n.jpg?_nc_cat=105&ccb=2&_nc_sid=dbb9e7&_nc_eui2=AeGH97KR7H9gmabq5FMgAhl4uQBnYAXwpu65AGdgBfCm7gumEROR-C1PLXwv1PT9ZaPGRYndCrCdUNkfxQIAruKg&_nc_ohc=_eJ8xHS3-l4AX_bOgX3&_nc_ht=scontent.fnbo1-1.fna&tp=27&oh=873270e2b48a46307567fef4ffda4d64&oe=60017D8D"
-        title="Alpha Nganga"
+        src={state.user.photoURL}
+        title={state.user.displayName}
       />
       <SidebarRow
         Icon={LocalHospitalIcon}

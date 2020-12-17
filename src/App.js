@@ -7,7 +7,7 @@ import {useStateValue} from './StateProvider';
 
 const App = () => {
   const [state] = useStateValue();
-console.log(state)
+
   return (
       <div className="app">
         {!state.user ? (

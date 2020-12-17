@@ -3,22 +3,36 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import VideoCamIcon from '@material-ui/icons/Videocam';
 import React, {useState} from 'react';
+import db from '../../../firebase';
+import {useStateValue} from '../../../StateProvider';
+import firebase from 'firebase'
 
 function NewPost() {
+  const [state, dispatch] = useStateValue();
+
   const [input, setInput] = useState('');
+  const [inputURL, setInputURL] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(input)
+
+    db.collection('posts').add({
+      message: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      profilePic: state.user.photoURL,
+      username: state.user.displayName,
+      image: inputURL
+    })
 
     setInput('');
+    setInputURL('');
   };
 
 
   return (
     <div className="newPost">
       <div className="newPost__top">
-        <Avatar/>
+        <Avatar src={state.user.photoURL}/>
         <form>
           <input
             id="newPost"
@@ -26,7 +40,13 @@ function NewPost() {
             onChange={(e) => setInput(e.target.value)}
             type="text"
             className="newPost__input"
-            placeholder="What's on your mind,"
+            placeholder={`What's on your mind, ${state.user.displayName}`}
+          />
+          <input
+            value={inputURL}
+            onChange={(e) => setInputURL(e.target.value)}
+            type="text"
+            placeholder="Image URL (Optional)"
           />
           <button onClick={handleSubmit} type="submit"/>
         </form>
