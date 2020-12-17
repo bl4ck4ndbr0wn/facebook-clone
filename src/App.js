@@ -5,11 +5,12 @@ const App = () => {
   return (
     <div className="app">
       <Header/>
-
-      {/* App Body */}
-      {/*  SideBar */}
-      {/* Feed */}
-      {/* Widgets */}
+      <div className="app__body">
+        {/* App Body */}
+        {/*  SideBar */}
+        {/* Feed */}
+        {/* Widgets */}
+      </div>
     </div>
   );
 };
