@@ -2,12 +2,14 @@ import {Avatar} from '@material-ui/core';
 import {ExpandMoreOutlined} from '@material-ui/icons';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import React from 'react';
+import React, {useState} from 'react';
 
 function Post({profilePic, image, username, timestamp, message}) {
+  // conditionally render dropdown affect based on this boolean
+  const [openMenu, setOpenMenu] = useState(false)
 
   return (
     <div className="post">
@@ -19,7 +21,8 @@ function Post({profilePic, image, username, timestamp, message}) {
             <p>Timestamp ....</p>
           </div>
         </div>
-        <MoreVertIcon className="post__top--icon"/>
+        <MoreHorizIcon className="post__top--icon" onClick={() => setOpenMenu(!openMenu)}/>
+
       </div>
       <div className="post__bottom">
         <p>{message}</p>

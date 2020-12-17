@@ -1,15 +1,18 @@
-import { Avatar, IconButton } from '@material-ui/core';
+import {Avatar} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import FlagIcon from '@material-ui/icons/Flag';
 import ForumIcon from '@material-ui/icons/Forum';
 import HomeIcon from '@material-ui/icons/Home';
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import SupervisedUserCirceIcon from '@material-ui/icons/SupervisedUserCircle';
 import React from 'react';
+import DropdownMenu from './DropdownMenu/DropdownMenu';
+import Navbar from './Navbar/Navbar';
+import NavItem from './NavItem/NavItem';
 
 const Header = () => {
   return (
@@ -42,22 +45,19 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="header__right"> <div className="header__info">
-        <Avatar/>
-        <h4>User Name</h4>
-      </div>
-        <IconButton>
-          <AddIcon/>
-        </IconButton>
-        <IconButton>
-          <ForumIcon/>
-        </IconButton>
-        <IconButton>
-          <NotificationsActiveIcon/>
-        </IconButton>
-        <IconButton>
-          <ExpandMoreIcon/>
-        </IconButton>
+      <div className="header__right">
+        <div className="header__info">
+          <Avatar/>
+          <h4>User Name</h4>
+        </div>
+        <Navbar>
+          <NavItem Icon={AddIcon}/>
+          <NavItem Icon={ForumIcon}/>
+          <NavItem Icon={NotificationsIcon}/>
+          <NavItem Icon={ArrowDropDownIcon}>
+            <DropdownMenu/>
+          </NavItem>
+        </Navbar>
       </div>
     </div>
   );
