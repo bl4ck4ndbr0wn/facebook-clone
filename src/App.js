@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './components/header'
+import Sidebar from './components/sidebar';
 
 const App = () => {
   return (
     <div className="app">
       <Header/>
       <div className="app__body">
-        {/* App Body */}
-        {/*  SideBar */}
+        <Sidebar/>
         {/* Feed */}
         {/* Widgets */}
       </div>
