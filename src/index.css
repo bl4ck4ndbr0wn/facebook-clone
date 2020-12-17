@@ -279,9 +279,29 @@ a {
     border-radius: 10px;
 }
 
+#sidebar__row--important{
+    background-color: #fff;
+    border: .3em solid #2e81f4;
+    border-radius: 10px;
+    -webkit-animation: breathing 2s ease-out infinite normal;
+    animation: breathing 2s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
+    margin: 0 auto;
+}
+
+#sidebar__row--important >.MuiSvgIcon-root{
+    color: red;
+}
+
+#sidebar__row--important h4 a {
+    color: #1677f2;
+}
 .sidebarRow > h4 {
     margin-left: 20px;
     font-weight: 600;
+}
+.sidebarRow > h4 a{
+    color: #050505;
 }
 
 .sidebarRow > .MuiSvgIcon-root {
