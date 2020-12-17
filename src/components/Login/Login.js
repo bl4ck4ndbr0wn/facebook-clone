@@ -1,9 +1,25 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
+import {userConstants} from '../../_constants';
+import {auth, provider} from '../../firebase';
+import {useStateValue} from '../../StateProvider';
 
 function Login() {
+  const [state, dispatch] = useStateValue();
 
   const signIn = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        dispatch({
+          type: userConstants.SET_USER,
+          user: result.user,
+        });
+        console.log(result);
+      })
+      .catch((error) => alert(error.message))
+
   };
   return (
     <div className="login">

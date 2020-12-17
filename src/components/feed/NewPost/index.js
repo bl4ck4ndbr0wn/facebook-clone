@@ -21,6 +21,7 @@ function NewPost() {
         <Avatar/>
         <form>
           <input
+            id="newPost"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             type="text"

@@ -10,11 +10,14 @@ import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import SupervisedUserCirceIcon from '@material-ui/icons/SupervisedUserCircle';
 import React from 'react';
+import {useStateValue} from '../../StateProvider';
 import DropdownMenu from './DropdownMenu/DropdownMenu';
 import Navbar from './Navbar/Navbar';
 import NavItem from './NavItem/NavItem';
 
 const Header = () => {
+  const [state] = useStateValue();
+console.log(state)
   return (
     <div className="header">
       <div className="header__left">
@@ -47,11 +50,11 @@ const Header = () => {
 
       <div className="header__right">
         <div className="header__info">
-          <Avatar/>
-          <h4>User Name</h4>
+          <Avatar src={state.user.photoURL}/>
+          <h4>{state.user.displayName}</h4>
         </div>
         <Navbar>
-          <NavItem Icon={AddIcon}/>
+          <NavItem to="#newPost" Icon={AddIcon}/>
           <NavItem Icon={ForumIcon}/>
           <NavItem Icon={NotificationsIcon}/>
           <NavItem Icon={ArrowDropDownIcon}>

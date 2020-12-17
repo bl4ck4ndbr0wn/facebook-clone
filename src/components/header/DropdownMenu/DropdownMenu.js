@@ -11,8 +11,12 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import SettingsIcon from '@material-ui/icons/Settings';
 import React, {useEffect, useRef, useState} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import {userConstants} from '../../../_constants';
+import {auth} from '../../../firebase';
+import {useStateValue} from '../../../StateProvider';
 
 function DropdownMenu() {
+  const [state, dispatch] = useStateValue();
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
@@ -34,6 +38,18 @@ function DropdownMenu() {
         <span className="icon-right">{props.rightIcon}</span>
       </a>
     );
+  }
+
+  function handleLogout(e) {
+    auth
+      .signOut()
+      .then(() => {
+        // Sign-out successful.
+        localStorage.removeItem('user')
+        dispatch({
+          type: userConstants.LOGOUT
+        });
+      })
   }
 
   return (
@@ -60,10 +76,10 @@ function DropdownMenu() {
             goToMenu="help">
             Help & support
           </DropdownItem>
-
-          <DropdownItem
-            leftIcon={<MeetingRoomIcon/>}
-          >Log Out</DropdownItem>
+          <a href="/" className="menu-item" onClick={(e) => handleLogout(e)}>
+            <span className="icon-button"><MeetingRoomIcon/></span>
+            Log Out
+          </a>
         </div>
       </CSSTransition>
 
